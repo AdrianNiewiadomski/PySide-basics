@@ -48,6 +48,18 @@ class MyWindow(QWidget):
         msgBox.setStandardButtons(QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel)
         msgBox.setDefaultButton(QMessageBox.Save)
         ret = msgBox.exec_()
+        self.perform_some_action(ret)
+
+    @staticmethod
+    def perform_some_action(ret):
+        if ret == QMessageBox.Save:
+            print("Save was clicked")
+        elif ret == QMessageBox.Discard:
+            print("Don't save was clicked")
+        elif ret == QMessageBox.Cancel:
+            print("cancel was clicked")
+        else:
+            print("should never be reached")
 
     def show_message_box_3(self):
         ret = QMessageBox.warning(self, self.tr("My Application"),
@@ -56,6 +68,8 @@ class MyWindow(QWidget):
                                   QMessageBox.Save | QMessageBox.Discard
                                   | QMessageBox.Cancel,
                                   QMessageBox.Save)
+        self.perform_some_action(ret)
+
 
     def show_message_box_4(self):
         user_info = QMessageBox.question(self, "confirmation", "Quit the app?", QMessageBox.Yes | QMessageBox.No)
